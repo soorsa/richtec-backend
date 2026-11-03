@@ -19,9 +19,9 @@ jobs:
       - name: 📂 Sync files via FTPS
         uses: airvzxf/ftp-deployment-action@latest
         with:
-          server: ftp.richtechafrica.com
+          server: ftp.richtecafrica.com
           user: richtecafrica_deploy@api.richtecafrica.com
-          password: ${{ secrets.ftp_password }}
+          password: richtecafrica_password
           protocol: ftps
 
           # === Critical for Namecheap stability ===
