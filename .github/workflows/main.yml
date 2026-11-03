@@ -21,7 +21,7 @@ jobs:
         with:
           server: ftp.richtecafrica.com
           user: richtecafrica_deploy@api.richtecafrica.com
-          password: richtecafrica_password
+          password: ${{ secrets.ftp_password }}
           protocol: ftps
 
           # === Critical for Namecheap stability ===
