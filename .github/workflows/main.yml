@@ -1,0 +1,50 @@
+on:
+  push:
+    branches: [main]
+
+name: 🚀 Deploy RICHTEC backend on push
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: 📂 Sync files via FTPS
+        uses: airvzxf/ftp-deployment-action@latest
+        with:
+          server: ftp.richtecafrica.com
+          user: richtecafrica_deploy@api.richtecafrica.com
+          password: richtecafrica_password
+          protocol: ftps
+
+          # === Critical for Namecheap stability ===
+          timeout_minutes: 30
+          max_attempts: 3
+          retry_wait_seconds: 10
+          passive: true
+          security: loose
+          concurrency: 1 # Lower concurrency to reduce timeout risk
+
+          # === Fixed exclude syntax (this is the main issue) ===
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github*
+            **/.github*/**
+            **/__pycache__/**
+            **/*.pyc
+            **/*.pyo
+            **/staticfiles/**
+            **/static/**
+            **/media/**
+            db.sqlite3
+            .env
+            *.log
+            .ftp-deploy-sync-state.json
