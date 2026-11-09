@@ -1,0 +1,12 @@
+---
+deployment:
+  tasks:
+    # 1. Define the path to your app root (where your manage.py is)
+    - export DEPLOYPATH=/home/richwkop/api.richtecafrica.com/
+    # 2. Copy the new code to the app directory
+    - /bin/cp -R * $DEPLOYPATH
+    # 3. Activate the virtualenv and run Django commands
+    # Replace the path below with the activation command from Step 2
+    - source /home/richwkop/virtualenv/api.richtecafrica.com/3.13/bin/activate && cd /home/richwkop/api.richtecafrica.com && pip install -r requirements.txt
+    - source /home/richwkop/virtualenv/api.richtecafrica.com/3.13/bin/activate && cd /home/richwkop/api.richtecafrica.com && python manage.py migrate
+    - source /home/richwkop/virtualenv/api.richtecafrica.com/3.13/bin/activate && cd /home/richwkop/api.richtecafrica.com && python manage.py collectstatic --noinput
