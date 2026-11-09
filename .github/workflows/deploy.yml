@@ -1,0 +1,44 @@
+# name: Deploy to cPanel
+
+# on:
+#   push:
+#     branches:
+#       - main # change to master if that's your default branch
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+
+#       - name: Deploy via FTP
+#         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+#         with:
+#           server: ${{ secrets.FTP_SERVER }}
+#           username: ${{ secrets.FTP_USERNAME }}
+#           password: ${{ secrets.FTP_PASSWORD }}
+#           server-dir: / # change this to your target folder
+#           protocol: ftps
+
+#           # === Critical for Namecheap stability ===
+#           port: 21
+#           timeout: 1200000 # 2 minutes (in milliseconds)
+#           log-level: verbose
+#           timeout_minutes: 30
+#           max_attempts: 3
+#           retry_wait_seconds: 10
+#           passive: true
+#           security: loose
+#           concurrency: 1 # Lower concurrency to reduce timeout risk
+
+#           # Optional useful settings:
+#           # protocol: ftps
+#           # port: 21
+#           exclude: |
+#             **/.git*
+#             **/.git*/**
+#             **/.github/**
+#             **/node_modules/**
+#             **/.env
+#             **/README.md

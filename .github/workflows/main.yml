@@ -34,18 +34,4 @@ jobs:
           concurrency: 1 # Lower concurrency to reduce timeout risk
 
           # === Fixed exclude syntax (this is the main issue) ===
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github*
-            **/.github*/**
-            **/__pycache__/**
-            **/*.pyc
-            **/*.pyo
-            **/staticfiles/**
-            **/static/**
-            **/media/**
-            db.sqlite3
-            .env
-            *.log
-            .ftp-deploy-sync-state.json
+          exclude: "**/.git*,**/.git*/**,**/.github*,**/.github*/**,**/__pycache__/**,**/*.pyc,**/*.pyo,**/staticfiles/**,**/static/**,**/media/**,db.sqlite3,.env,*.log,.ftp-deploy-sync-state.json"
