@@ -19,7 +19,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: / # change this to your target folder
-          protocol: ftps
+          protocol: ftp
 
           # === Critical for Namecheap stability ===
           port: 21
