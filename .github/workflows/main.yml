@@ -23,6 +23,7 @@ jobs:
           user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
+          ftp_ssl_allow: "false"
 
           # === Critical for Namecheap stability ===
           timeout_minutes: 30
