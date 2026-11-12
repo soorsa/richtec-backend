@@ -1,5 +1,5 @@
 on: push
-name: 🚀 Deploy App core
+name: 🚀 Deploy Richtech API
 jobs:
   web-deploy:
     name: 🎉 Deploy
@@ -8,7 +8,7 @@ jobs:
       - name: 🚚 Get latest code
         uses: actions/checkout@v6
 
-      - name: 📂 Sync files
+      - name: 📂 Sync CORE files
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -42,17 +42,7 @@ jobs:
           #   **/shop
           #   **/shop/**
 
-on: push
-name: 🚀 Deploy App Authentication
-jobs:
-  web-deploy:
-    name: 🎉 Deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v6
-
-      - name: 📂 Sync files
+      - name: 📂 Sync AUTH files
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -71,17 +61,7 @@ jobs:
           passive: true
           concurrency: 1 # Lower concurrency to reduce timeout risk
 
-on: push
-name: 🚀 Deploy App Shop
-jobs:
-  web-deploy:
-    name: 🎉 Deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🚚 Get latest code
-        uses: actions/checkout@v6
-
-      - name: 📂 Sync files
+      - name: 📂 Sync SHOP files
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -99,3 +79,4 @@ jobs:
           retry_wait_seconds: 10
           passive: true
           concurrency: 1 # Lower concurrency to reduce timeout risk
+
