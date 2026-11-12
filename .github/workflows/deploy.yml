@@ -104,6 +104,10 @@ jobs:
           passive: true
           concurrency: 1 # Lower concurrency to reduce timeout risk
           exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github*
+            **/.github*/**
             **/.venv*
             **/.venv*/**
             **/core*
