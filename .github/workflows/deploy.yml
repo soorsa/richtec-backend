@@ -16,7 +16,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: / # change this to your target folder
           protocol: ftps
-          port: 21098
+          port: 21
           security: loose
           timeout: 3000000 # 2 minutes (in milliseconds)
           log-level: verbose
@@ -31,6 +31,10 @@ jobs:
             **/.git*/**
             **/.github/**
             **/.env
+            **/.venv
+            **/.venv/**
+            **/static
+            **/static/**
             **/README.md
 
 # jobs:
