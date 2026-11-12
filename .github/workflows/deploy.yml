@@ -61,6 +61,11 @@ jobs:
           retry_wait_seconds: 10
           passive: true
           concurrency: 1 # Lower concurrency to reduce timeout risk
+          exclude: |
+            **/.__pycache*
+            **/.__pycache*/**
+            **/.migrations*
+            **/.migrations/**
 
       - name: 📂 Sync AUTH files
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
