@@ -1,5 +1,5 @@
 on: push
-name: 🚀 Deploy website on push
+name: 🚀 Deploy App core
 jobs:
   web-deploy:
     name: 🎉 Deploy
@@ -14,7 +14,8 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: / # change this to your target folder
+          local-dir: ./core/
+          server-dir: /core/ # change this to your target folder
           protocol: ftps
           port: 21
           security: loose
@@ -26,54 +27,48 @@ jobs:
           passive: true
           concurrency: 1 # Lower concurrency to reduce timeout risk
 
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github/**
-            **/.env
-            **/.venv
-            **/.venv/**
-            **/static
-            **/static/**
-            **/README.md
-            **/authentication
-            **/authentication/**
-            **/shop
-            **/shop/**
+          # exclude: |
+          #   **/.git*
+          #   **/.git*/**
+          #   **/.github/**
+          #   **/.env
+          #   **/.venv
+          #   **/.venv/**
+          #   **/static
+          #   **/static/**
+          #   **/README.md
+          #   **/authentication
+          #   **/authentication/**
+          #   **/shop
+          #   **/shop/**
 
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v6
+name: 🚀 Deploy App Authentication
+jobs:
 
-#       - name: Deploy via FTP
-#         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-#         with:
-#           server: ${{ secrets.FTP_SERVER }}
-#           username: ${{ secrets.FTP_USERNAME }}
-#           password: ${{ secrets.FTP_PASSWORD }}
-#           server-dir: / # change this to your target folder
-#           protocol: ftps
+name: 🚀 Deploy App Shop
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v6
 
-#           # === Critical for Namecheap stability ===
-#           port: 21
-#           timeout: 3000000 # 2 minutes (in milliseconds)
-#           log-level: verbose
-#           timeout_minutes: 30
-#           max_attempts: 3
-#           retry_wait_seconds: 10
-#           passive: true
-#           security: loose
-#           concurrency: 1 # Lower concurrency to reduce timeout risk
-
-#           # Optional useful settings:
-#           # protocol: ftps
-#           # port: 21
-#           exclude: |
-#             **/.git*
-#             **/.git*/**
-#             **/.github/**
-#             **/.env
-#             **/README.md
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./shop/
+          server-dir: /shop/ # change this to your target folder
+          protocol: ftps
+          port: 21
+          security: loose
+          timeout: 3000000 # 2 minutes (in milliseconds)
+          log-level: verbose
+          timeout_minutes: 30
+          max_attempts: 3
+          retry_wait_seconds: 10
+          passive: true
+          concurrency: 1 # Lower concurrency to reduce timeout risk
