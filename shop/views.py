@@ -16,7 +16,8 @@ class ProductApiSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     lookup_field = "slug"
     filterset_fields = ["title", "category__slug"]
-    # ordering_fields = ["created_at", "duration", "interest_rate"]
+    search_fields = ["title", "description"]
+    ordering_fields = ["title", "create_at", "price"]
     def get_queryset(self):
         user = self.request.user
         # Check if the user is authenticated and is staff (or a superuser)
