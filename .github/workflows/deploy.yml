@@ -36,6 +36,10 @@ jobs:
             **/static
             **/static/**
             **/README.md
+            **/authentication
+            **/authentication/**
+            **/shop
+            **/shop/**
 
 # jobs:
 #   deploy:
