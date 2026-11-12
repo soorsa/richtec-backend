@@ -42,14 +42,14 @@ jobs:
           #   **/shop
           #   **/shop/**
 
-      - name: 📂 Sync AUTH files
+      - name: 📂 Sync SHOP files
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./authentication/
-          server-dir: /authentication/ # change this to your target folder
+          local-dir: ./shop/
+          server-dir: /shop/ # change this to your target folder
           protocol: ftps
           port: 21
           security: loose
@@ -61,14 +61,14 @@ jobs:
           passive: true
           concurrency: 1 # Lower concurrency to reduce timeout risk
 
-      - name: 📂 Sync SHOP files
+      - name: 📂 Sync AUTH files
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./shop/
-          server-dir: /shop/ # change this to your target folder
+          local-dir: ./authentication/
+          server-dir: /authentication/ # change this to your target folder
           protocol: ftps
           port: 21
           security: loose
