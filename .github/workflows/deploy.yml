@@ -62,8 +62,8 @@ jobs:
           passive: true
           concurrency: 1 # Lower concurrency to reduce timeout risk
           exclude: |
-            **/.__pycache*
-            **/.__pycache*/**
+            **/.__pycache__*
+            **/.__pycache__*/**
             **/.migrations*
             **/.migrations/**
 
@@ -86,3 +86,32 @@ jobs:
           passive: true
           concurrency: 1 # Lower concurrency to reduce timeout risk
 
+      - name: 📂 Sync OTHER files
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: / # change this to your target folder
+          protocol: ftps
+          port: 21
+          security: loose
+          timeout: 3000000 # 2 minutes (in milliseconds)
+          log-level: verbose
+          timeout_minutes: 30
+          max_attempts: 3
+          retry_wait_seconds: 10
+          passive: true
+          concurrency: 1 # Lower concurrency to reduce timeout risk
+          exclude: |
+            **/.venv*
+            **/.venv*/**
+            **/core*
+            **/core*/**
+            **/shop*
+            **/shop*/**
+            **/authentication*
+            **/authentication*/**
+            **/static*
+            **/static*/**
+            **/db.sqlite3*
