@@ -15,7 +15,7 @@ class ProductApiSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     lookup_field = "slug"
-    filterset_fields = ["title", "category__slug"]
+    filterset_fields = ["title", "category__slug", "price"]
     search_fields = ["title", "description"]
     ordering_fields = ["title", "create_at", "price"]
     def get_queryset(self):
